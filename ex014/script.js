@@ -1,26 +1,28 @@
-function carregar() {
-    var msg = document.getElementById('msg');
-    var img = document.getElementById('imagem');
-    var data = new Date();
-    var hora = data.getHours();
-    // Atualiza a mensagem
-    msg.innerHTML = `Agora são ${hora} horas.`;
-    
-    // Atualiza a imagem e a mensagem com base na hora
+function carregar(){
+    var msg     = window.document.getElementById('msg')
+    var img     = window.document.getElementById('imagem')
+    var data    = new Date()
+    var hora    = data.getHours()
+    var minutos = data.getMinutes()
+    var segundos = data.getSeconds()
+    msg.innerHTML = `Agora sao ${hora}:${minutos}:${segundos}.`
+
+    hora = hora < 10 ? '0' + hora : hora;
+    minutos = minutos < 10 ? '0' + minutos : minutos;
+    segundos = segundos < 10 ? '0' + segundos : segundos;
+
+    // Atualiza a mensagem de acordo com a hora do dia
     if (hora >= 0 && hora < 12) {
-        // Bom dia
-        img.src = 'imagens/manha.jpg';
-        msg.innerHTML += ' Bom dia!';
-        document.body.style.backgroundColor = '#FCC8BA'
-    } else if (hora >= 12 && hora < 18) {
-        // Boa tarde
-        img.src = 'imagens/tarde.jpg';
-        msg.innerHTML += ' Boa tarde!';
-        document.body.style.backgroundColor = '#DF985A'
+        msg.innerHTML = `Bom dia! Agora são ${hora}:${minutos}:${segundos}.`;
+        img.src = 'imagens/manha.jpg'
+        document.body.style.background = '#E49DA6'
+    } else if (hora >= 12 && hora <= 18) {
+        msg.innerHTML = `Boa tarde! Agora são ${hora}:${minutos}:${segundos}.`;
+        img.src = 'imagens/tarde.jpg'
+        document.body.style.background = '#A47760'
     } else {
-        // Boa noite
-        img.src = 'imagens/noite.jpg';
-        msg.innerHTML += ' Boa noite!';
-        document.body.style.backgroundColor = '#2375CF'
+        msg.innerHTML = `Boa noite! Agora são ${hora}:${minutos}:${segundos}.`;
+        img.src = 'imagens/noite.jpg'
+        document.body.style.background = '#022042'
     }
 }
